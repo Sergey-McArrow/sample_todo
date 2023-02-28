@@ -22,7 +22,7 @@ export const todoSlice = createSlice({
 		},
 		changeStatus: (state, action) => {
 			const { id, status } = action.payload
-			const index = state.todos.findIndex(obj => obj.id === id)
+			const index = state.todos.findIndex(todo => todo.id === id)
 			if (index !== -1) {
 				state.todos[index] = { ...state.todos[index], status: !status }
 			}
