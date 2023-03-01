@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useCallback } from "react"
 import { useModalWindow } from "../hook/useModalWindow"
+import { handleOpenPopup } from '../store/slices/modalSlice'
 import { changeStatus } from "../store/slices/todoSlice"
 import { Ttodo } from "../types/Todo"
 import { useAppDispatch } from "./../hook/useRedux";
@@ -19,7 +20,7 @@ const ModalContent: FC<TModalContent> = ({ title, description }) => {
 
 export const TableRow: FC<Ttodo> = (props) => {
   const { id, title, description, status } = props
-  const { handleOpenPopup, Modal } = useModalWindow()
+  // const { handleOpenPopup, Modal } = useModalWindow()
 
   const dispatch = useAppDispatch()
   const handleChangeStatus = useCallback(
@@ -28,6 +29,7 @@ export const TableRow: FC<Ttodo> = (props) => {
     },
     [status]
   );
+  // const element = <ModalContent title={title} description={description} />
 
   return (
     <>
@@ -36,9 +38,7 @@ export const TableRow: FC<Ttodo> = (props) => {
         <td
           style={{ color: "blue" }}
           onClick={() =>
-            handleOpenPopup(
-              <ModalContent title={title} description={description} />
-            )
+            dispatch(handleOpenPopup({ title, description }))
           }
         >
           {title}
@@ -53,7 +53,6 @@ export const TableRow: FC<Ttodo> = (props) => {
           />
         </td>
       </tr>
-      <Modal />
     </>
   )
 }

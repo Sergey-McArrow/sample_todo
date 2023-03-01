@@ -1,5 +1,4 @@
-import { useCallback, useState } from "react";
-import { Ttodo } from "../types/Todo";
+import { useCallback, useState } from "react"
 import { Popup } from "../components/Popup";
 
 export const useModalWindow = () => {
