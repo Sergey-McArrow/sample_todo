@@ -45,6 +45,7 @@ input:invalid[focused='true'] ~ span {
   height: 300px;
   z-index: 3;
   padding: 10px;
+  background-color: #242424;
 }
 
 .overlay {

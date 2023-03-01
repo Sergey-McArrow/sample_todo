@@ -1,19 +1,19 @@
 import { FC } from 'react'
 import { Ttodo } from '../types/Todo'
 
-type Tpopup = {
+type TpopupProps = {
 	isOpen: boolean
 	onClose: () => void
-	todo: Ttodo
+	popupTodo: Ttodo
 }
 
-export const Popup: FC<Tpopup> = ({ isOpen, onClose, todo }) => {
-	const { title, description } = todo
+export const Popup: FC<TpopupProps> = ({ isOpen, onClose, popupTodo }) => {
+	const { title, description } = popupTodo
 	return (
-		<tr style={{ display: isOpen ? 'block' : 'none' }} className='modal'>
+		<div style={{ display: isOpen ? 'block' : 'none' }} className='modal'>
 			<h2> {title}</h2>
 			<p>{description}</p>
 			<button onClick={onClose}>Close</button>
-		</tr>
+		</div>
 	)
 }
