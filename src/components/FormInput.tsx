@@ -1,22 +1,29 @@
-import React, { FC } from 'react'
+import { FC, MutableRefObject, useEffect, useRef, useState } from "react"
 
 type TFormInputProps = {
-	label: string
-	errorMessage: string
-	name: string
-	type: string
-	placeholder: string
-	required?: boolean
+  label: string
+  errorMessage: string
+  name: string
+  placeholder: string
+  type?: string
+  required?: boolean
+  inputRef: MutableRefObject<any>
 }
 
-export const FormInput: FC<TFormInputProps> = props => {
-	const { label, errorMessage, ...inputProps } = props
+export const FormInput: FC<TFormInputProps> = (props) => {
+  const { inputRef, label, errorMessage, ...inputProps } = props
+  // const [isValid, setIsValid] = useState(true)
 
-	return (
-		<div className='formInput'>
-			<label>{label}</label>
-			<input {...inputProps} />
-			<span>{errorMessage}</span>
-		</div>
-	)
+  return (
+    <div className="formInput">
+      <label>{label}
+        <input
+          ref={inputRef}
+          {...inputProps}
+          // style={{ borderColor: isValid ? "" : "red" }}
+        />
+      </label>
+      {/* {!isValid ? <span>{errorMessage}</span> : null} */}
+    </div>
+  )
 }
